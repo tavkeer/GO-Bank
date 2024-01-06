@@ -57,8 +57,16 @@ func (s *APIServer) handleLogin(w http.ResponseWriter, r *http.Request) error {
 	var req LoginRequest
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+
 		return err
 	}
+
+	acc, err := s.store.GetAccountByNumber(int(req.Number))
+	if err != nil {
+		return err
+	}
+
+	fmt.Printf("%+v\n", acc)
 
 	return WriteJSON(w, http.StatusOK, req)
 }
