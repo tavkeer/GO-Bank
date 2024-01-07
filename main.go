@@ -8,7 +8,6 @@ import (
 
 func seedAccount(store Storage, fname, lname, password string) *Account {
 	acc, err := NewAccount(fname, lname, password)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,12 +24,10 @@ func seedAccounts(s Storage) {
 }
 
 func main() {
-
 	seed := flag.Bool("seed", false, "seed the db")
 	flag.Parse()
 
 	store, err := NewPostgressStore()
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -47,4 +44,5 @@ func main() {
 	server := NewApiServer(":3000", store)
 
 	server.Run()
+	fmt.Print("The server is run sucessfully")
 }
