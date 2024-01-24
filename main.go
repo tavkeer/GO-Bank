@@ -44,5 +44,6 @@ func main() {
 	server := NewApiServer(":3000", store)
 
 	server.Run()
+	//
 	fmt.Print("The server is run sucessfully")
 }
